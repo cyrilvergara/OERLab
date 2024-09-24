@@ -68,7 +68,7 @@ export default function TabComponent() {
           <div className="code-block">
             {/* HTML Section */}
             <div className="flex justify-between items-center mb-2">
-              <h3 className="text-lg font-semibold">HTML Code:</h3>
+              <h4 className="text-sm font-semibold">HTML Code:</h4>
               <button
                 className="text-sm text-blue-500 hover:underline"
                 onClick={() => copyToClipboard(htmlCode)}
@@ -82,7 +82,7 @@ export default function TabComponent() {
 
             {/* CSS Section */}
             <div className="flex justify-between items-center mt-4 mb-2">
-              <h3 className="text-lg font-semibold">CSS Code:</h3>
+              <h4 className="text-sm font-semibold">CSS Code:</h4>
               <button
                 className="text-sm text-blue-500 hover:underline"
                 onClick={() => copyToClipboard(cssCode)}
