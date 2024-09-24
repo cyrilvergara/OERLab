@@ -2,13 +2,15 @@ import { useState } from "react";
 
 export default function TabComponent() {
   const [activeTab, setActiveTab] = useState(0);
+  const [isHtmlOpen, setIsHtmlOpen] = useState(false); // State to toggle HTML visibility
+  const [isCssOpen, setIsCssOpen] = useState(false); // State to toggle CSS visibility
 
   const htmlCode = `
     <div class="image-container">
-      <
-      img src="https://via.placeholder.com/300" 
-      alt="Placeholder Image" 
-      class="image-preview" 
+      <img 
+        src="https://via.placeholder.com/300" 
+        alt="Placeholder Image" 
+        class="image-preview" 
       />
     </div>
   `;
@@ -31,6 +33,10 @@ export default function TabComponent() {
   const copyToClipboard = (text) => {
     navigator.clipboard.writeText(text);
     alert("Code copied to clipboard!");
+  };
+
+  const getCodePreview = (code, limit) => {
+    return code.length > limit ? `${code.substring(0, limit)}...` : code;
   };
 
   return (
@@ -71,13 +77,21 @@ export default function TabComponent() {
               <h4 className="text-sm font-semibold">HTML Code:</h4>
               <button
                 className="text-sm text-blue-500 hover:underline"
+                onClick={() => setIsHtmlOpen(!isHtmlOpen)}
+              >
+                {isHtmlOpen ? "Hide HTML" : "Show HTML"}
+              </button>
+              <button
+                className="text-sm text-blue-500 hover:underline ml-2"
                 onClick={() => copyToClipboard(htmlCode)}
               >
                 Copy Code
               </button>
             </div>
             <pre className="bg-gray-100 p-2 rounded text-xs sm:text-sm md:text-base">
-              <code>{htmlCode}</code>
+              <code>
+                {isHtmlOpen ? htmlCode : getCodePreview(htmlCode, 50)}
+              </code>
             </pre>
 
             {/* CSS Section */}
@@ -85,13 +99,19 @@ export default function TabComponent() {
               <h4 className="text-sm font-semibold">CSS Code:</h4>
               <button
                 className="text-sm text-blue-500 hover:underline"
+                onClick={() => setIsCssOpen(!isCssOpen)}
+              >
+                {isCssOpen ? "Hide CSS" : "Show CSS"}
+              </button>
+              <button
+                className="text-sm text-blue-500 hover:underline ml-2"
                 onClick={() => copyToClipboard(cssCode)}
               >
                 Copy Code
               </button>
             </div>
             <pre className="bg-gray-100 p-2 rounded text-xs sm:text-sm md:text-base">
-              <code>{cssCode}</code>
+              <code>{isCssOpen ? cssCode : getCodePreview(cssCode, 50)}</code>
             </pre>
           </div>
         )}
