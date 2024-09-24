@@ -60,7 +60,7 @@ export default function TabComponent() {
             <img
               src="https://via.placeholder.com/300"
               alt="Preview"
-              className="image-preview rounded-lg shadow-lg w-full max-w-xs md:max-w-md lg:max-w-lg"
+              className="image-preview rounded-lg shadow-lg w-full max-w-xs md:max-w-s lg:max-w-lg"
             />
           </div>
         )}
